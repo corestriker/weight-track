@@ -11,7 +11,7 @@
 - [x] Gewicht für anderes Datum eintragen
   - [ ] Datum Eingabe validieren
 - [x] Chart mit Gewicht zu Tag geplottet
-  - [ ] Chart mit DarkMode compatibel machen
+  - [x] Chart mit DarkMode compatibel machen
 - [x] User Profile Seite
   - [ ] Größe hinterlegen
   - [x] Liste eingetragener Gewichte
