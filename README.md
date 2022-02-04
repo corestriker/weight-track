@@ -8,13 +8,19 @@
 - [x] Logout
 - [x] Seite zum Gewicht eintragen
 - [x] Database Setup
-- [ ] Gewicht für anderes Datum eintragen
-- [ ] Chart mit Gewicht zu Tag geplottet
-- [ ] User Profile Seite
+- [x] Gewicht für anderes Datum eintragen
+  - [ ] Datum Eingabe validieren
+- [x] Chart mit Gewicht zu Tag geplottet
+  - [ ] Chart mit DarkMode compatibel machen
+- [x] User Profile Seite
   - [ ] Größe hinterlegen
-  - [ ] Liste eingetragener Gewichte
-  - [ ] Gewichts-Eintrag löschen
+  - [x] Liste eingetragener Gewichte
+    - [ ] Was passiert wenn Liste zu groß?
+  - [x] Gewichts-Eintrag löschen
 - [ ] BMI Berechnung
+- [ ] DarkModeSwitch von Portfolio Seite einbauen
+- [ ] WihteMode schick machen
+- [x] Sign In Seite DarkMode fixen
 
 
 ## Google Login 

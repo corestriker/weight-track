@@ -26,9 +26,11 @@ const chart = {
 
 function WeightChart({ user }) {
   const [weights, setWeights] = useState([]);
-  const [series, setSeries] = useState({
-    data: [],
-  });
+  const [series, setSeries] = useState([
+    {
+      data: [],
+    },
+  ]);
   //console.log("user" + user.uid);
 
   useEffect(() => {

@@ -1,14 +1,27 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  useColorMode,
+} from "@chakra-ui/react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 // import { getProviders, signIn as signInToProvider } from "next-auth/react";
 import React from "react";
 import { auth, provider } from "../../../firebase";
+import HeadTitle from "../../components/HeadTitle";
+import Layout from "../../components/Layout";
 import NavBar from "../../components/NavBar";
 
 // function signin({ providers }) {
 function signin() {
   const router = useRouter();
+
+  const { colorMode } = useColorMode();
+  const bgColor = { light: "gray.50", dark: "gray.800" };
+  const color = { light: "black", dark: "white" };
 
   const googleHandler = async () => {
     provider.setCustomParameters({ prompt: "select_account" });
@@ -35,32 +48,36 @@ function signin() {
   };
 
   return (
-    <>
+    <Box bg={bgColor[colorMode]} color={color[colorMode]} h="100vh">
+      <HeadTitle tabTitle="sign in" />
       <NavBar />
-      <Flex
-        flexDirection="column"
-        alignItems="center"
-        minH="100vh"
-        justifyContent="center"
-        textAlign="center"
-        mt={-56}
-      >
-        <Heading>Weight-Tracker</Heading>
-        <Box mt={8}>
-          <div>
-            <Button
-              colorScheme="teal"
-              variant="outline"
-              onClick={async () => {
-                await googleHandler();
-              }}
-            >
-              sign in with Google
-            </Button>
-          </div>
-        </Box>
-      </Flex>
-    </>
+      <Box pt={4}>
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          h="100vh"
+          minH="100vh"
+          justifyContent="center"
+          textAlign="center"
+          mt={-56}
+        >
+          <Heading>Weight-Tracker</Heading>
+          <Box mt={8}>
+            <div>
+              <Button
+                colorScheme="teal"
+                variant="outline"
+                onClick={async () => {
+                  await googleHandler();
+                }}
+              >
+                sign in with Google
+              </Button>
+            </div>
+          </Box>
+        </Flex>
+      </Box>
+    </Box>
   );
 }
 

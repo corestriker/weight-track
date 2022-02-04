@@ -16,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { useRouter } from "next/router";
 import WeightChart from "../components/WeightChart";
+import Head from "next/head";
 
 const Index = () => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const Index = () => {
                   p={4}
                   isFitted
                   variant="enclosed"
+                  minH={"72"}
                 >
                   <TabList mb="1em">
                     <Tab>weight today</Tab>

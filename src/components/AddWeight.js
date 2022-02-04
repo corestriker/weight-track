@@ -15,6 +15,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const AddWeightSchema = Yup.object().shape({
   weight: Yup.number()
+    .typeError("must be a number")
+    .transform((_value, originalValue) =>
+      Number(originalValue.replace(/,/, "."))
+    )
+    // only the first comma is replaced so that numbers like 123,123,23 are not valid
     .min(30, "30 is minimum")
     .max(300, "You can't weight that much")
     .required("Required"),
@@ -71,7 +76,6 @@ function AddWeight({ withDate }) {
                   mt={4}
                 />
               )}
-
               <Button
                 mt={4}
                 type="submit"
