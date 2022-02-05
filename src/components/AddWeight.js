@@ -20,10 +20,10 @@ const AddWeightSchema = Yup.object().shape({
       Number(originalValue.replace(/,/, "."))
     )
     // only the first comma is replaced so that numbers like 123,123,23 are not valid
-    .min(30, "30 is minimum")
-    .max(300, "You can't weight that much")
+    .min(0, "0 is minimum")
+    .max(500, "500 is maximum")
     .required("Required"),
-  date: Yup.date(),
+  date: Yup.date().max(new Date(), "date must be in the past"),
 });
 
 export const saveWeight = async (userId, values) => {
@@ -41,7 +41,7 @@ export const saveWeight = async (userId, values) => {
 function AddWeight({ withDate }) {
   const [user] = useAuthState(auth);
 
-  //console.log(withDate);
+  //console.log(new Date().toISOString().split("T")[0]);
 
   return (
     <Flex justifyContent="center">
@@ -74,6 +74,7 @@ function AddWeight({ withDate }) {
                   maxW="56"
                   ml="auto"
                   mt={4}
+                  max={new Date().toISOString().split("T")[0]}
                 />
               )}
               <Button

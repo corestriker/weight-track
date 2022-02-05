@@ -12,7 +12,7 @@ const Wrapper = ({ children, variant = "regular" }) => {
 
   return (
     <Box
-      height="100vh"
+      height="100%"
       bg={bgColor[colorMode]}
       color={color[colorMode]}
       mt={8}

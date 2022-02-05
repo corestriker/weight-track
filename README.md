@@ -9,7 +9,7 @@
 - [x] Seite zum Gewicht eintragen
 - [x] Database Setup
 - [x] Gewicht für anderes Datum eintragen
-  - [ ] Datum Eingabe validieren
+  - [x] Datum Eingabe validieren
 - [x] Chart mit Gewicht zu Tag geplottet
   - [x] Chart mit DarkMode compatibel machen
 - [x] User Profile Seite
