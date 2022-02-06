@@ -5,7 +5,7 @@ import React from "react";
 function SelectField({ selectOptions, label, size, ...props }) {
   const [field, { error }] = useField(props);
 
-  console.log(selectOptions);
+  //console.log(selectOptions);
   return (
     <FormControl isInvalid={!!error}>
       <Flex justifyContent="center" justifyItems="center" alignItems="center">
@@ -13,7 +13,9 @@ function SelectField({ selectOptions, label, size, ...props }) {
         <Select {...field} {...props} id={field.name}>
           {selectOptions &&
             selectOptions.map((option) => (
-              <option value={option.option}>{option.text}</option>
+              <option key={option.id} value={option.option}>
+                {option.text}
+              </option>
             ))}
         </Select>
       </Flex>

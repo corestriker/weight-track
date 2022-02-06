@@ -13,7 +13,7 @@
 - [x] Chart mit Gewicht zu Tag geplottet
   - [x] Chart mit DarkMode compatibel machen
 - [x] User Profile Seite
-  - [ ] Größe hinterlegen
+  - [x] Größe hinterlegen
   - [x] Liste eingetragener Gewichte
     - [ ] Was passiert wenn Liste zu groß?
   - [x] Gewichts-Eintrag löschen
@@ -23,7 +23,7 @@
 - [x] Sign In Seite DarkMode fixen
 - [ ] Zuletzt eingetragenes Gewicht anzeigen
   - [ ] Gewicht einfärben ob mehr oder weniger
-  - [ ] 3 Optionen zum färben - none / weight loss / weight gain
+  - [x] 3 Optionen zum färben - none / weight loss / weight gain
 
 
 ## Google Login 

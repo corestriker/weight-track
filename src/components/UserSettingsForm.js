@@ -1,22 +1,21 @@
 import { Button, Flex, FormLabel, Select } from "@chakra-ui/react";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { Form, Formik, useField } from "formik";
 import React from "react";
 import { db } from "../../firebase";
+import { coloringOptions } from "../util/coloringOptions";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 
-const colloringOptions = [
-  { option: "none", text: "none" },
-  { option: "weightLoss", text: "weight loss" },
-  { option: "weightGain", text: "weight gain" },
-];
-
 function UserSettingsForm({ currentUser }) {
-  const saveSettings = async (values) => {
-    const weightRef = await setDoc(doc(db, "user", currentUser.uid), {
+  const saveSettings = async (userId, values) => {
+    const colOption =
+      values.coloringOption === "" ? "none" : values.coloringOption;
+
+    const userRef = await setDoc(doc(db, "user", userId), {
       timestamp: serverTimestamp(),
       height: values.height,
+      colorOption: colOption,
     });
     //console.log("new doc added:");
     //console.log(weightRef);
@@ -25,11 +24,11 @@ function UserSettingsForm({ currentUser }) {
   return (
     <Flex justifyContent="center">
       <Formik
-        initialValues={{ height: "", colloringOption: "" }}
-        //validationSchema={AddWeightSchema}
+        initialValues={{ height: "", coloringOption: "" }}
+        //validationSchema={UserOptionsSchema}
         onSubmit={async (values) => {
-          console.log(values);
-          saveSettings(user.uid, values);
+          //console.log(values);
+          saveSettings(currentUser.uid, values);
           //await new Promise((resolve) => setTimeout(resolve, 1000));
           return null;
         }}
@@ -46,13 +45,13 @@ function UserSettingsForm({ currentUser }) {
                 required
               />
               <SelectField
-                name="colloringOption"
+                name="coloringOption"
                 placeholder=""
-                label="Colloring the last weight"
+                label="Coloring the last weight"
                 mt={4}
                 maxW="56"
                 ml="auto"
-                selectOptions={colloringOptions}
+                selectOptions={coloringOptions}
               />
 
               <Button
