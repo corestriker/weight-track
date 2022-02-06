@@ -18,9 +18,9 @@ function WeightChart({ user }) {
     },
   ]);
   //console.log("user" + user.uid);
-  console.log(colorMode);
+  //console.log(colorMode);
   useEffect(() => {
-    console.log("mode:" + colorMode);
+    //console.log("mode:" + colorMode);
     setOptions({
       chart: {
         id: "weight-line-chart",
@@ -46,12 +46,18 @@ function WeightChart({ user }) {
   }, [colorMode]);
 
   useEffect(() => {
-    return onSnapshot(
+    // console.log("useEffect chart");
+    const unsubscribe = onSnapshot(
       queryLoadWeightsForUserId(user.uid, "asc"),
       (snapshot) => {
+        // console.log("useeffect set weitghs chart");
         setWeights(snapshot.docs);
       }
     );
+    // This function will be run when the component will be unmunted
+    return () => {
+      unsubscribe();
+    };
   }, [user]);
 
   useEffect(() => {

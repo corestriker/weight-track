@@ -1,9 +1,15 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, IconButton, Stack, Text } from "@chakra-ui/react";
-import { deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
-import { queryLoadWeightsForUserId } from "../util/queryLoadWeightsForUserId";
 
 const deleteWeight = async (userUid, weightId) => {
   //console.log("deleteing id: " + weightId);
@@ -12,26 +18,35 @@ const deleteWeight = async (userUid, weightId) => {
 };
 
 function WeightList({ currentUser }) {
-  const [weights, setWeights] = useState([]);
+  const [weightList, setWeightList] = useState([]);
 
   useEffect(() => {
-    if (currentUser) {
-      return onSnapshot(
-        queryLoadWeightsForUserId(currentUser.uid, "desc"),
-        (snapshot) => {
-          setWeights(snapshot.docs);
-        }
-      );
-    } else {
-      return null;
-    }
-  }, [currentUser, weights]);
+    //if (currentUser) {
+    // console.log("useeffect weightList");
+    const unsubscribe = onSnapshot(
+      query(
+        collection(db, "user", currentUser.uid, "weights"),
+        orderBy("date", "desc")
+      ),
+      (snapshot) => {
+        // console.log("useeffect setting weights for list");
+        setWeightList(snapshot.docs);
+      }
+    );
+    // } else {
+    //   return null;
+    // }
+    // This function will be run when the component will be unmunted
+    return () => {
+      unsubscribe();
+    };
+  }, [currentUser]);
 
   return (
     <Stack spacing={4} borderWidth={1} p={8} borderRadius="lg">
       <Heading fontSize="xl">Added Weights: </Heading>
-      {weights && weights.length > 0
-        ? weights.map((w) => (
+      {weightList && weightList.length > 0
+        ? weightList.map((w) => (
             <Flex
               key={w.id}
               p={4}

@@ -10,13 +10,12 @@ import {
   Text,
   useColorMode,
 } from "@chakra-ui/react";
-import AddWeight from "../components/AddWeight";
+import AddWeightForm from "../components/AddWeightForm";
 import Layout from "../components/Layout";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { useRouter } from "next/router";
 import WeightChart from "../components/WeightChart";
-import Head from "next/head";
 
 const Index = () => {
   const router = useRouter();
@@ -49,11 +48,11 @@ const Index = () => {
                   <TabPanels>
                     <TabPanel>
                       <>
-                        <AddWeight />
+                        <AddWeightForm />
                       </>
                     </TabPanel>
                     <TabPanel>
-                      <AddWeight withDate />
+                      <AddWeightForm withDate />
                     </TabPanel>
                   </TabPanels>
                 </Tabs>

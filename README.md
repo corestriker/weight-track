@@ -21,6 +21,9 @@
 - [ ] DarkModeSwitch von Portfolio Seite einbauen
 - [ ] WihteMode schick machen
 - [x] Sign In Seite DarkMode fixen
+- [ ] Zuletzt eingetragenes Gewicht anzeigen
+  - [ ] Gewicht einfärben ob mehr oder weniger
+  - [ ] 3 Optionen zum färben - none / weight loss / weight gain
 
 
 ## Google Login 

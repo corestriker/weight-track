@@ -1,7 +1,8 @@
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import Layout from "../components/Layout";
+import UserSettingsForm from "../components/UserSettingsForm";
 import WeightList from "../components/WeightList";
 
 function user() {
@@ -29,8 +30,13 @@ function user() {
       <Layout tabTitle="User">
         <div>User</div>
 
+        <Box p={4} borderWidth={1} borderRadius="lg">
+          <Text>Settings:</Text>
+          <UserSettingsForm currentUser={currentUser} />
+        </Box>
+
         <Box pt={8}>
-          <WeightList currentUser={currentUser} />
+          {currentUser && <WeightList currentUser={currentUser} />}
         </Box>
       </Layout>
     </Box>

@@ -32,13 +32,13 @@ export const saveWeight = async (userId, values) => {
     timestamp: serverTimestamp(),
     date: values.date ? new Date(values.date) : new Date(),
   });
-  console.log("new doc added:");
-  console.log(weightRef);
+  //console.log("new doc added:");
+  //console.log(weightRef);
 
   //await setDoc(doc(db, "user", userId), note);
 };
 
-function AddWeight({ withDate }) {
+function AddWeightForm({ withDate }) {
   const [user] = useAuthState(auth);
 
   //console.log(new Date().toISOString().split("T")[0]);
@@ -93,4 +93,4 @@ function AddWeight({ withDate }) {
   );
 }
 
-export default AddWeight;
+export default AddWeightForm;
