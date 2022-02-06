@@ -62,7 +62,6 @@ const Index = () => {
                 <BMI user={user} />
               </Container>
               <Container mt={8} maxW="container.lg">
-                <Text>Chart:</Text>
                 <WeightChart user={user} />
               </Container>
             </>

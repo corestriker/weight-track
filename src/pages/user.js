@@ -1,4 +1,4 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Heading, Text, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import Layout from "../components/Layout";
@@ -31,7 +31,7 @@ function user() {
         <div>User</div>
 
         <Box p={4} borderWidth={1} borderRadius="lg">
-          <Text>Settings:</Text>
+          <Heading>Settings:</Heading>
           <UserSettingsForm currentUser={currentUser} />
         </Box>
 

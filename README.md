@@ -17,7 +17,7 @@
   - [x] Liste eingetragener Gewichte
     - [ ] Was passiert wenn Liste zu groß?
   - [x] Gewichts-Eintrag löschen
-- [ ] BMI Berechnung
+- [x] BMI Berechnung
 - [ ] DarkModeSwitch von Portfolio Seite einbauen
 - [ ] WihteMode schick machen
 - [x] Sign In Seite DarkMode fixen

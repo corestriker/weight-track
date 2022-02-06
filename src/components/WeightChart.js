@@ -1,4 +1,4 @@
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box, Heading, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { onSnapshot } from "firebase/firestore";
@@ -76,6 +76,7 @@ function WeightChart({ user }) {
 
   return (
     <Box>
+      <Heading>Weights: </Heading>
       <Chart options={options} series={series} type="line" width="900" />
     </Box>
   );
