@@ -23,7 +23,9 @@
 - [x] Sign In Seite DarkMode fixen
 - [ ] Zuletzt eingetragenes Gewicht anzeigen
   - [ ] Gewicht einfärben ob mehr oder weniger
+    - Einfärben im verhältnis zum zuletzt eingtragenen Gewicht oder zum Startgewicht?
   - [x] 3 Optionen zum färben - none / weight loss / weight gain
+- [ ] Footer mit Link zum Github?
 
 
 ## Google Login 

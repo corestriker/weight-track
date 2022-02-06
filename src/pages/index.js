@@ -16,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { useRouter } from "next/router";
 import WeightChart from "../components/WeightChart";
+import BMI from "../components/BMI";
 
 const Index = () => {
   const router = useRouter();
@@ -56,6 +57,9 @@ const Index = () => {
                     </TabPanel>
                   </TabPanels>
                 </Tabs>
+              </Container>
+              <Container mt={8} maxW="container.lg">
+                <BMI user={user} />
               </Container>
               <Container mt={8} maxW="container.lg">
                 <Text>Chart:</Text>

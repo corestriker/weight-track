@@ -1,16 +1,10 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "./InputField";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import * as Yup from "yup";
 import { auth, db } from "../../firebase";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const AddWeightSchema = Yup.object().shape({

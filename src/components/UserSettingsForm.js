@@ -1,11 +1,25 @@
-import { Button, Flex, FormLabel, Select } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { Form, Formik, useField } from "formik";
+import { Form, Formik } from "formik";
 import React from "react";
 import { db } from "../../firebase";
 import { coloringOptions } from "../util/coloringOptions";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
+import * as Yup from "yup";
+
+const UserOptionsSchema = Yup.object().shape({
+  height: Yup.number()
+    .typeError("must be a number")
+    .transform((_value, originalValue) =>
+      Number(originalValue.replace(/,/, "."))
+    )
+    .integer("no decimal number allowed")
+    // only the first comma is replaced so that numbers like 123,123,23 are not valid
+    .min(0, "0 is minimum")
+    .max(500, "500 is maximum")
+    .required("Required"),
+});
 
 function UserSettingsForm({ currentUser }) {
   const saveSettings = async (userId, values) => {
@@ -25,7 +39,7 @@ function UserSettingsForm({ currentUser }) {
     <Flex justifyContent="center">
       <Formik
         initialValues={{ height: "", coloringOption: "" }}
-        //validationSchema={UserOptionsSchema}
+        validationSchema={UserOptionsSchema}
         onSubmit={async (values) => {
           //console.log(values);
           saveSettings(currentUser.uid, values);
