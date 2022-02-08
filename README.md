@@ -15,7 +15,7 @@
 - [x] User Profile Seite
   - [x] Größe hinterlegen
   - [x] Liste eingetragener Gewichte
-    - [ ] Was passiert wenn Liste zu groß?
+    - [x] Was passiert wenn Liste zu groß?
   - [x] Gewichts-Eintrag löschen
 - [x] BMI Berechnung
 - [ ] DarkModeSwitch von Portfolio Seite einbauen

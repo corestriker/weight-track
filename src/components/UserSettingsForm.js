@@ -1,12 +1,13 @@
 import { Button, Flex } from "@chakra-ui/react";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import { Form, Formik } from "formik";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
 import { coloringOptions } from "../util/coloringOptions";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import * as Yup from "yup";
+import { useRef } from "react";
 
 const UserOptionsSchema = Yup.object().shape({
   height: Yup.number()
@@ -22,6 +23,23 @@ const UserOptionsSchema = Yup.object().shape({
 });
 
 function UserSettingsForm({ currentUser }) {
+  console.log(currentUser);
+  const [userSettings, setUserSettings] = useState({});
+  const formikRef = useRef();
+
+  useEffect(async () => {
+    console.log("oho");
+    const userSettingsRef = await getDoc(doc(db, "user", currentUser.uid));
+    setUserSettings(userSettingsRef.data());
+    if (formikRef.current) {
+      formikRef.current.setFieldValue("height", userSettingsRef.data().height);
+      formikRef.current.setFieldValue(
+        "coloringOption",
+        userSettingsRef.data().colorOption
+      );
+    }
+  }, [currentUser]);
+
   const saveSettings = async (userId, values) => {
     const colOption =
       values.coloringOption === "" ? "none" : values.coloringOption;
@@ -38,7 +56,11 @@ function UserSettingsForm({ currentUser }) {
   return (
     <Flex justifyContent="center">
       <Formik
-        initialValues={{ height: "", coloringOption: "" }}
+        innerRef={formikRef}
+        initialValues={{
+          height: "",
+          coloringOption: "",
+        }}
         validationSchema={UserOptionsSchema}
         onSubmit={async (values) => {
           //console.log(values);

@@ -30,11 +30,12 @@ function user() {
       <Layout tabTitle="User">
         <div>User</div>
 
-        <Box p={4} borderWidth={1} borderRadius="lg">
-          <Heading>Settings:</Heading>
-          <UserSettingsForm currentUser={currentUser} />
-        </Box>
-
+        {currentUser && (
+          <Box p={4} borderWidth={1} borderRadius="lg">
+            <Heading>Settings:</Heading>
+            <UserSettingsForm currentUser={currentUser} />
+          </Box>
+        )}
         <Box pt={8}>
           {currentUser && <WeightList currentUser={currentUser} />}
         </Box>
