@@ -14,6 +14,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 const NavBar = () => {
   const router = useRouter();
@@ -40,12 +41,9 @@ const NavBar = () => {
         </NextLink>
 
         <Flex ml="auto" alignItems="center">
-          <Switch
-            mr={4}
-            color="green"
-            isChecked={isDark}
-            onChange={toggleColorMode}
-          />
+          <Box mr={4}>
+            <ThemeToggleButton />
+          </Box>
           {user ? (
             <>
               <NextLink href="/user">
