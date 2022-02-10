@@ -42,9 +42,10 @@ function AddWeightForm({ withDate }) {
       <Formik
         initialValues={{ weight: "", date: "" }}
         validationSchema={AddWeightSchema}
-        onSubmit={async (values) => {
+        onSubmit={async (values, { resetForm }) => {
           console.log(values);
           saveWeight(user.uid, values);
+          resetForm();
           //await new Promise((resolve) => setTimeout(resolve, 1000));
           return null;
         }}

@@ -21,14 +21,14 @@
 - [ ] DarkModeSwitch von Portfolio Seite einbauen
 - [ ] WihteMode schick machen
 - [x] Sign In Seite DarkMode fixen
-- [ ] Zuletzt eingetragenes Gewicht anzeigen
+- [x] Zuletzt eingetragenes Gewicht anzeigen
   - [x] Gewicht einfärben ob mehr oder weniger
     - Einfärben im verhältnis zum zuletzt eingtragenen Gewicht oder zum Startgewicht?
   - [x] 3 Optionen zum färben - none / weight loss / weight gain
 - [ ] Footer mit Link zum Github?
 - [x] Bug Weightlist hat den ersten Eintag doppelt
 - [x] Zu viele Lesevogänge - Optimieren
-- [ ] Nach gewichts eingabe formular clearen
+- [x] Nach Gewichtseingabe Formular leeren
 
 
 ## Google Login 

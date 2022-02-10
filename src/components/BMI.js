@@ -57,8 +57,15 @@ function BMI({ weights, userSettings }) {
     <Box>
       <Heading>BMI:</Heading>
       <Flex flexDirection="column" justifyContent="center" alignItems="center">
-        {/* <Text>Hight: {userSettings.height} cm</Text>
-        <Text>Last Weight: {lastWeight} kg</Text> */}
+        <Flex alignItems="center">
+          <Text fontSize="xl" pr={2}>
+            actual weight:{" "}
+          </Text>
+          <Text color={coloring} fontSize="xl">
+            {lastWeight} kg
+          </Text>
+        </Flex>
+
         <Flex alignItems="center">
           <Text fontSize="xl" pr={2}>
             diff from start:{" "}
@@ -67,6 +74,7 @@ function BMI({ weights, userSettings }) {
             {diffWeight > 0 ? "+" + diffWeight : diffWeight} kg
           </Text>
         </Flex>
+
         <Text pt={2} fontSize="xl">
           BMI: {calcBMI(lastWeight, userSettings.height)}
         </Text>
