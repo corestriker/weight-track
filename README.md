@@ -15,17 +15,20 @@
 - [x] User Profile Seite
   - [x] Größe hinterlegen
   - [x] Liste eingetragener Gewichte
-    - [x] Was passiert wenn Liste zu groß?
+    - [ ] Was passiert wenn Liste zu groß?
   - [x] Gewichts-Eintrag löschen
 - [x] BMI Berechnung
 - [ ] DarkModeSwitch von Portfolio Seite einbauen
 - [ ] WihteMode schick machen
 - [x] Sign In Seite DarkMode fixen
 - [ ] Zuletzt eingetragenes Gewicht anzeigen
-  - [ ] Gewicht einfärben ob mehr oder weniger
+  - [x] Gewicht einfärben ob mehr oder weniger
     - Einfärben im verhältnis zum zuletzt eingtragenen Gewicht oder zum Startgewicht?
   - [x] 3 Optionen zum färben - none / weight loss / weight gain
 - [ ] Footer mit Link zum Github?
+- [x] Bug Weightlist hat den ersten Eintag doppelt
+- [x] Zu viele Lesevogänge - Optimieren
+- [ ] Nach gewichts eingabe formular clearen
 
 
 ## Google Login 

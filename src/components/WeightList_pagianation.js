@@ -13,14 +13,19 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDocs,
+  limit,
   onSnapshot,
   orderBy,
   query,
+  startAfter,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 
 //Achtung mit pagination das delete geht dann aber nicht mehr
+
+const selectLimit = 5;
 
 const deleteWeight = async (userUid, weightId) => {
   //console.log("deleteing id: " + weightId);
@@ -30,17 +35,19 @@ const deleteWeight = async (userUid, weightId) => {
 
 function WeightList({ currentUser }) {
   const [weightList, setWeightList] = useState([]);
+  const [lastWeight, setLastWeight] = useState({});
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const wieghtsRef = collection(db, "user", currentUser.uid, "weights");
 
   useEffect(() => {
     // console.log("useeffect weightList");
     const unsubscribe = onSnapshot(
-      query(wieghtsRef, orderBy("date", "desc")),
+      query(wieghtsRef, orderBy("date", "desc"), limit(selectLimit)),
       (snapshot) => {
         console.log("useeffect setting weights for list");
-
-        setWeightList(snapshot.docs);
+        updateWeightList(snapshot);
       }
     );
     // This function will be run when the component will be unmunted
@@ -48,6 +55,45 @@ function WeightList({ currentUser }) {
       unsubscribe();
     };
   }, []);
+
+  const updateWeightList = (weights) => {
+    // const canges = weights.docChanges();
+    // console.log(canges[0]);
+    // // übelster hack ..
+
+    if (weights.size > 0) {
+      //   if (canges[0].type === "removed") {
+      //     let newWeightList = [...weightList];
+      //     newWeightList.splice(canges[0].oldIndex, 1);
+
+      //     setWeightList(newWeightList);
+      //   } else {
+      setWeightList((weightList) => [...weightList, ...weights.docs]);
+      // }
+      setLastWeight(weights.docs[weights.docs.length - 1]);
+      if (weights.size < selectLimit) {
+        setBtnDisabled(true);
+      }
+    } else {
+      setBtnDisabled(true);
+    }
+    setLoading(false);
+  };
+
+  const fetchMore = async () => {
+    setLoading(true);
+    await getDocs(
+      query(
+        wieghtsRef,
+        orderBy("date", "desc"),
+        limit(selectLimit),
+        startAfter(lastWeight)
+      )
+    ).then((weights) => {
+      //console.log(weights.docs);
+      updateWeightList(weights);
+    });
+  };
 
   return (
     <Stack spacing={4} borderWidth={1} p={8} borderRadius="lg">
@@ -84,6 +130,9 @@ function WeightList({ currentUser }) {
             </Flex>
           ))
         : null}
+      <Button disabled={btnDisabled} isLoading={loading} onClick={fetchMore}>
+        Load More
+      </Button>
     </Stack>
   );
 }

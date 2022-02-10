@@ -23,12 +23,11 @@ const UserOptionsSchema = Yup.object().shape({
 });
 
 function UserSettingsForm({ currentUser }) {
-  console.log(currentUser);
+  //console.log(currentUser);
   const [userSettings, setUserSettings] = useState({});
   const formikRef = useRef();
 
   useEffect(async () => {
-    console.log("oho");
     const userSettingsRef = await getDoc(doc(db, "user", currentUser.uid));
     setUserSettings(userSettingsRef.data());
     if (formikRef.current) {

@@ -1,4 +1,4 @@
-import { Box, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import {
   collection,
   doc,
@@ -7,62 +7,80 @@ import {
   limit,
   onSnapshot,
   orderBy,
-  Query,
   query,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import NextLink from "next/link";
+import { coloringOptions } from "../util/coloringOptions";
 
 const calcBMI = (weight, height) => {
   return (parseInt(weight) / Math.pow(height / 100, 2)).toFixed(1);
 };
 
-function BMI({ user }) {
-  //console.log(user.uid);
-  const [userSettings, setUserSettings] = useState({});
+function BMI({ weights, userSettings }) {
+  const [firstWeight, setFirstWeight] = useState(null);
   const [lastWeight, setLastWeight] = useState(null);
+  const [diffWeight, setDiffWeight] = useState(null);
+  const [coloring, setColoring] = useState("");
 
   useEffect(async () => {
-    console.log("useEffect BMI");
-    const userSettingsRef = await getDoc(doc(db, "user", user.uid));
-    setUserSettings(userSettingsRef.data());
+    //console.log(weights.length - 1);
+    if (weights.length > 0) {
+      setFirstWeight(weights[0].data().weight);
+      setLastWeight(weights[weights.length - 1].data().weight);
 
-    const unsubscribe = onSnapshot(
-      query(
-        collection(db, "user", user.uid, "weights"),
-        orderBy("date", "desc"),
-        limit(1)
-      ),
-      (snapshot) => {
-        // console.log(snapshot.docs);
-        snapshot.docs.forEach((doc) => {
-          // console.log(doc.data());
-          // console.log("lastweight" + doc.data().weight);
-          setLastWeight(doc.data().weight);
-          //break;
-        });
+      setDiffWeight(lastWeight - firstWeight);
+    }
+
+    // Detmine coloring
+    if (userSettings) {
+      const colorOption = userSettings.colorOption;
+      if (colorOption === "none") {
+      } else if (colorOption === "weightLoss") {
+        if (diffWeight <= 0) {
+          setColoring("green.500");
+        } else {
+          setColoring("red.500");
+        }
+      } else if (colorOption === "weightGain") {
+        if (diffWeight >= 0) {
+          setColoring("green.500");
+        } else {
+          setColoring("red.500");
+        }
       }
-    );
-    // This function will be run when the component will be unmunted
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    }
+  }, [weights, diffWeight]);
 
   return (
     <Box>
       <Heading>BMI:</Heading>
-      <Text>Hight: {userSettings.height} cm</Text>
-      <Text>Last Weight: {lastWeight} kg</Text>
-      <Text>BMI: {calcBMI(lastWeight, userSettings.height)}</Text>
+      <Flex flexDirection="column" justifyContent="center" alignItems="center">
+        {/* <Text>Hight: {userSettings.height} cm</Text>
+        <Text>Last Weight: {lastWeight} kg</Text> */}
+        <Flex alignItems="center">
+          <Text fontSize="xl" pr={2}>
+            diff from start:{" "}
+          </Text>
+          <Text color={coloring} fontSize="xl">
+            {diffWeight > 0 ? "+" + diffWeight : diffWeight} kg
+          </Text>
+        </Flex>
+        <Text pt={2} fontSize="xl">
+          BMI: {calcBMI(lastWeight, userSettings.height)}
+        </Text>
 
-      <Text>
-        Take a futher look into BMI {"->  "}
-        <NextLink href="https://en.wikipedia.org/wiki/Body_mass_index" passHref>
-          <Link>Wikipedia BMI</Link>
-        </NextLink>
-      </Text>
+        <Text pt={2}>
+          Take a futher look into BMI {"->  "}
+          <NextLink
+            href="https://en.wikipedia.org/wiki/Body_mass_index"
+            passHref
+          >
+            <Link>Wikipedia BMI</Link>
+          </NextLink>
+        </Text>
+      </Flex>
     </Box>
   );
 }

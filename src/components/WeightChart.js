@@ -5,19 +5,17 @@ import { onSnapshot } from "firebase/firestore";
 import { queryLoadWeightsForUserId } from "../util/queryLoadWeightsForUserId";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function WeightChart({ user }) {
+function WeightChart({ weights }) {
   const { colorMode } = useColorMode();
   const bgColor = { light: "gray.50", dark: "gray.800" };
   const color = { light: "black", dark: "white" };
-
-  const [weights, setWeights] = useState([]);
   const [options, setOptions] = useState({});
   const [series, setSeries] = useState([
     {
       data: [],
     },
   ]);
-  //console.log("user" + user.uid);
+
   //console.log(colorMode);
   useEffect(() => {
     //console.log("mode:" + colorMode);
@@ -44,21 +42,6 @@ function WeightChart({ user }) {
       },
     });
   }, [colorMode]);
-
-  useEffect(() => {
-    // console.log("useEffect chart");
-    const unsubscribe = onSnapshot(
-      queryLoadWeightsForUserId(user.uid, "asc"),
-      (snapshot) => {
-        // console.log("useeffect set weitghs chart");
-        setWeights(snapshot.docs);
-      }
-    );
-    // This function will be run when the component will be unmunted
-    return () => {
-      unsubscribe();
-    };
-  }, [user]);
 
   useEffect(() => {
     const data = weights.map((w) => ({
