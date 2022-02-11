@@ -6,7 +6,7 @@ export const WrapperVariant = "small" | "regular";
 const Wrapper = ({ children, variant = "regular" }) => {
   const { colorMode } = useColorMode();
 
-  const bgColor = { light: "gray.100", dark: "gray.900" };
+  const bgColor = { light: "gray.100", dark: "gray.800" };
 
   const color = { light: "black", dark: "white" };
 

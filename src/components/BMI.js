@@ -54,8 +54,8 @@ function BMI({ weights, userSettings }) {
   }, [weights, diffWeight]);
 
   return (
-    <Box>
-      <Heading>BMI:</Heading>
+    <Box mt={10}>
+      {/* <Heading>BMI:</Heading> */}
       <Flex flexDirection="column" justifyContent="center" alignItems="center">
         <Flex alignItems="center">
           <Text fontSize="xl" pr={2}>

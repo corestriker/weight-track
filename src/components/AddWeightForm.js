@@ -10,9 +10,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const AddWeightSchema = Yup.object().shape({
   weight: Yup.number()
     .typeError("must be a number")
-    .transform((_value, originalValue) =>
-      Number(originalValue.replace(/,/, "."))
-    )
+    // .transform((_value, originalValue) =>
+    //   Number(originalValue.replace(/,/, "."))
+    // ) // breaks float
     // only the first comma is replaced so that numbers like 123,123,23 are not valid
     .min(0, "0 is minimum")
     .max(500, "500 is maximum")
@@ -22,7 +22,7 @@ const AddWeightSchema = Yup.object().shape({
 
 export const saveWeight = async (userId, values) => {
   const weightRef = await addDoc(collection(db, "user", userId, "weights"), {
-    weight: values.weight,
+    weight: parseFloat(values.weight).toFixed(2),
     timestamp: serverTimestamp(),
     date: values.date ? new Date(values.date) : new Date(),
   });

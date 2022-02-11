@@ -29,6 +29,10 @@
 - [x] Bug Weightlist hat den ersten Eintag doppelt
 - [x] Zu viele Lesevogänge - Optimieren
 - [x] Nach Gewichtseingabe Formular leeren
+- [ ] Index Seite mit Text füllen
+- [ ] Readme für Github vorbereiten
+- [ ] Github einrichten
+- [ ] Favicon?
 
 
 ## Google Login 

@@ -24,7 +24,7 @@ import { queryLoadWeightsForUserId } from "../util/queryLoadWeightsForUserId";
 const Index = () => {
   const router = useRouter();
   const { colorMode } = useColorMode();
-  const bgColor = { light: "gray.50", dark: "gray.800" };
+  const bgColor = { light: "gray.200", dark: "gray.900" };
   const color = { light: "black", dark: "white" };
   const [user] = useAuthState(auth);
   const [userSettings, setUserSettings] = useState({});

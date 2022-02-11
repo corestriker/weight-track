@@ -5,7 +5,6 @@ import {
   Heading,
   Image,
   Link,
-  Switch,
   useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
@@ -21,7 +20,7 @@ const NavBar = () => {
   const [user] = useAuthState(auth);
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  const bgColor = { light: "gray.100", dark: "gray.900" };
+  const bgColor = { light: "gray.300", dark: "black" };
   const color = { light: "black", dark: "white" };
 
   return (

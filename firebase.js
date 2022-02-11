@@ -5,6 +5,8 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// Cofigs nach .env.local auslagern für github
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCb87TaVIOXFKA5iep9NpUL63hOGpTwVDE",

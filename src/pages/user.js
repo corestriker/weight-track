@@ -7,7 +7,7 @@ import WeightList from "../components/WeightList";
 
 function user() {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "gray.50", dark: "gray.800" };
+  const bgColor = { light: "gray.50", dark: "gray.900" };
   const color = { light: "black", dark: "white" };
 
   const [currentUser, setCurrentUser] = useState(null);
@@ -28,8 +28,6 @@ function user() {
   return (
     <Box bg={bgColor[colorMode]} color={color[colorMode]}>
       <Layout tabTitle="User">
-        <div>User</div>
-
         {currentUser && (
           <Box p={4} borderWidth={1} borderRadius="lg">
             <Heading>Settings:</Heading>
