@@ -9,12 +9,12 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCb87TaVIOXFKA5iep9NpUL63hOGpTwVDE",
-  authDomain: "weight-tracker-a9673.firebaseapp.com",
-  projectId: "weight-tracker-a9673",
-  storageBucket: "weight-tracker-a9673.appspot.com",
-  messagingSenderId: "643739810984",
-  appId: "1:643739810984:web:fa37d27490b5583c2a969d",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

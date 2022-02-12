@@ -2,6 +2,9 @@ import {
   Box,
   Button,
   Container,
+  Flex,
+  Heading,
+  Link,
   Tab,
   TabList,
   TabPanel,
@@ -20,6 +23,7 @@ import BMI from "../components/BMI";
 import { useState, useEffect } from "react";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { queryLoadWeightsForUserId } from "../util/queryLoadWeightsForUserId";
+import NextLink from "next/link";
 
 const Index = () => {
   const router = useRouter();
@@ -93,14 +97,30 @@ const Index = () => {
             </>
           ) : (
             <Box>
-              <Text>Please login to use these App :)</Text>
-              <Button
-                onClick={() => {
-                  router.push("/auth/signin");
-                }}
-              >
-                Sign In
-              </Button>
+              <Flex flexDirection="column" alignItems="center">
+                <Heading>Welcome to Weight-Tracker</Heading>
+                <Text fontSize="lg" mt={8}>
+                  With this App you can track your weight if you want to to gain
+                  or lose it
+                </Text>
+                <Text>With BMI calculation</Text>
+                <Text mt={8}>This App is Open Source find the code at</Text>
+                <NextLink href="#">
+                  <Button colorScheme="teal" variant="link">
+                    GitHub
+                  </Button>
+                </NextLink>
+                <Text mt={10}>Login to use this Weight-Tracker</Text>
+                <Button
+                  mt={8}
+                  minW={40}
+                  onClick={() => {
+                    router.push("/auth/signin");
+                  }}
+                >
+                  Sign In
+                </Button>
+              </Flex>
             </Box>
           )}
         </Container>

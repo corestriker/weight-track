@@ -19,7 +19,7 @@
   - [x] Gewichts-Eintrag löschen
 - [x] BMI Berechnung
 - [x] DarkModeSwitch von Portfolio Seite einbauen
-- [ ] WihteMode schick machen
+- [x] WihteMode schick machen
 - [x] Sign In Seite DarkMode fixen
 - [x] Zuletzt eingetragenes Gewicht anzeigen
   - [x] Gewicht einfärben ob mehr oder weniger
@@ -29,7 +29,7 @@
 - [x] Bug Weightlist hat den ersten Eintag doppelt
 - [x] Zu viele Lesevogänge - Optimieren
 - [x] Nach Gewichtseingabe Formular leeren
-- [ ] Index Seite mit Text füllen
+- [x] Index Seite mit Text füllen
 - [ ] Readme für Github vorbereiten
 - [ ] Github einrichten
 - [ ] Favicon?
