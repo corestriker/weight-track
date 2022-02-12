@@ -30,7 +30,7 @@ function BMI({ weights, userSettings }) {
       setFirstWeight(weights[0].data().weight);
       setLastWeight(weights[weights.length - 1].data().weight);
 
-      setDiffWeight(lastWeight - firstWeight);
+      setDiffWeight((lastWeight - firstWeight).toFixed(2));
     }
 
     // Detmine coloring
