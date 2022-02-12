@@ -105,11 +105,14 @@ const Index = () => {
                 </Text>
                 <Text>With BMI calculation</Text>
                 <Text mt={8}>This App is Open Source find the code at</Text>
-                <NextLink href="#">
+                <a
+                  target="_blank"
+                  href="https://github.com/corestriker/weight-track"
+                >
                   <Button colorScheme="teal" variant="link">
                     GitHub
                   </Button>
-                </NextLink>
+                </a>
                 <Text mt={10}>Login to use this Weight-Tracker</Text>
                 <Button
                   mt={8}
