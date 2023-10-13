@@ -98,7 +98,7 @@ const Index = () => {
           ) : (
             <Box>
               <Flex flexDirection="column" alignItems="center">
-                <Heading>Welcome to Weight-Tracker</Heading>
+                <Heading>Hello to Weight-Tracker</Heading>
                 <Text fontSize="lg" mt={8}>
                   With this App you can track your weight if you want to to gain
                   or lose it
